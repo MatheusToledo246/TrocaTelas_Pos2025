@@ -1,6 +1,9 @@
 package com.example.trocatelas_pos2025
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -32,5 +35,16 @@ class ConfirmarActivity : AppCompatActivity() {
         tvValor.setText( valor )
 
 
+    }
+
+    fun btEnviarOnClick(view: View) {
+        val sms_body = "cod: ${tvCod.text} qtd: ${tvQtd.text} valor: ${tvValor.text} "
+        val phone_number = "sms:+5514996394514"
+
+        val intent = Intent( Intent.ACTION_VIEW)
+        intent.setData( Uri.parse( phone_number))
+        intent.putExtra("sms_body", sms_body)
+
+        startActivity(intent)
     }
 }
